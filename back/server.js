@@ -3,7 +3,7 @@ const app = express();
 const dotenv = require('dotenv');
 const sequelize = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
-const authMiddleware = require('./middlewares/authMiddleware');
+const authMiddleware = require('./middleware/authMiddleware');
 
 dotenv.config();
 app.use(express.json());
