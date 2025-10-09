@@ -9,6 +9,8 @@ const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const offerRoutes = require('./routes/offerRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
+const serviceRoutes = require('./routes/serviceRoutes');
+
 
 // Middleware
 dotenv.config();
@@ -19,6 +21,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/offer', offerRoutes);
 app.use('/api/review', reviewRoutes);
+app.use('/api/service', serviceRoutes);
+
 
 // Database connection and server start
 sequelize.authenticate()

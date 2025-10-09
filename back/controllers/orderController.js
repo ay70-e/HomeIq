@@ -1,5 +1,6 @@
 const Order = require('../models/Order');
 
+// ✅ Get all orders for the logged-in user
 exports.getUserOrders = async (req, res) => {
   try {
     const orders = await Order.findAll({ where: { user_id: req.user.id } });
@@ -9,6 +10,7 @@ exports.getUserOrders = async (req, res) => {
   }
 };
 
+// ✅ Create a new order
 exports.createOrder = async (req, res) => {
   try {
     const {
@@ -17,17 +19,26 @@ exports.createOrder = async (req, res) => {
       details,
       preferred_time,
       price,
-      payment_method
+      payment_method,
+      date
     } = req.body;
 
+    // التحقق من الحقول المطلوبة
+    if (!service_id || !company_id || !date) {
+      return res.status(400).json({
+        message: 'Please provide service_id, company_id, and date'
+      });
+    }
+
     const order = await Order.create({
-      user_id: req.user.id,
+      user_id: req.user.id, 
       service_id,
       company_id,
       details,
       preferred_time,
       price,
-      payment_method:'cash',
+      date, 
+      payment_method: payment_method || 'cash',
       payment_status: 'unpaid',
       order_status: 'pending'
     });
@@ -38,6 +49,7 @@ exports.createOrder = async (req, res) => {
   }
 };
 
+// ✅ Delete an order
 exports.deleteOrder = async (req, res) => {
   try {
     const order = await Order.findByPk(req.params.id);
@@ -52,6 +64,7 @@ exports.deleteOrder = async (req, res) => {
   }
 };
 
+// ✅ Update order status (for company)
 exports.updateOrderStatus = async (req, res) => {
   try {
     const order = await Order.findByPk(req.params.id);
@@ -68,6 +81,7 @@ exports.updateOrderStatus = async (req, res) => {
   }
 };
 
+// ✅ Update payment status (for company or admin)
 exports.updatePaymentStatus = async (req, res) => {
   try {
     const order = await Order.findByPk(req.params.id);
@@ -80,8 +94,8 @@ exports.updatePaymentStatus = async (req, res) => {
     }
 
     const { payment_status } = req.body;
-
     const validStatuses = ['unpaid', 'paid', 'refunded'];
+
     if (!validStatuses.includes(payment_status)) {
       return res.status(400).json({ message: 'Invalid payment status' });
     }
