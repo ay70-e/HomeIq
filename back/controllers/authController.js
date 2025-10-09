@@ -2,19 +2,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Company = require('../models/Company');
+const Admin = require('../models/Admin');
 require('dotenv').config();
 
 // Register new user
 exports.registerUser = async (req, res) => {
   try {
-    const {
-      full_name,
-      phone_no,
-      email,
-      password,
-      province,
-      role 
-    } = req.body;
+    const { full_name, phone_no, email, password, province, role } = req.body;
 
     const existingUser = await User.findOne({ where: { phone_no } });
     if (existingUser) {
@@ -63,11 +57,11 @@ exports.registerCompany = async (req, res) => {
     const company = await Company.create({
       name,
       email,
-phone_no,
+      phone_no,
       password: hashedPassword,
-category,
+      category,
       address,
-role,
+      role,
       license_doc,
       logo
     });
@@ -78,15 +72,42 @@ role,
   }
 };
 
-// Login for user or company
+// Register new admin
+exports.registerAdmin = async (req, res) => {
+  try {
+    const { full_name, email, phone_no, password } = req.body;
+
+    const existingAdmin = await Admin.findOne({ where: { phone_no } });
+    if (existingAdmin) {
+      return res.status(400).json({ message: 'Phone number is already in use' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const admin = await Admin.create({
+      full_name,
+      email,
+      phone_no,
+      password: hashedPassword,
+      role: 'admin'
+    });
+
+    res.status(201).json({ message: 'Admin account created successfully', admin });
+  } catch (error) {
+    res.status(500).json({ message: 'Admin registration failed', error: error.message });
+  }
+};
+
+// Unified login for user, company, or admin
 exports.login = async (req, res) => {
   try {
     const { phone_no, password } = req.body;
 
     const user = await User.findOne({ where: { phone_no } });
     const company = await Company.findOne({ where: { phone_no } });
+    const admin = await Admin.findOne({ where: { phone_no } });
 
-    const account = user || company;
+    const account = user || company || admin;
 
     if (!account) {
       return res.status(404).json({ message: 'Account not found' });
@@ -98,7 +119,7 @@ exports.login = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: account.id, role: account.role },
+      { id: account.id || account.admin_id, role: account.role },
       process.env.JWT_SECRET,
       { expiresIn: '7d' }
     );
