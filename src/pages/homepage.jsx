@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Search } from "lucide-react";
 import Footer from "../components/footer";
+
 const Homepage = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
