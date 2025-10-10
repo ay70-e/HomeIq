@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import axios from "axios";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import FormInput from "../components/FormInput";
 import Button from "../components/Button";
 
 const RegisterUser = () => {
+   useEffect(() => {
+      AOS.init({ duration: 2000 });
+    }, []);
   const [formData, setFormData] = useState({
     full_name: "",
     phone_no: "",
@@ -32,7 +37,7 @@ const RegisterUser = () => {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    backgroundColor: "#faf5eb",
+    backgroundColor: "#f3f8f6",
   };
 
   const formStyle = {
@@ -50,7 +55,17 @@ const RegisterUser = () => {
     fontSize: "1.25rem", // text-xl
     fontWeight: "700",
     textAlign: "center",
-   color: "#c86e3e",
+   color: "#3bb273",
+    marginBottom: "1px"
+  };
+
+  const subtitleStyle = {
+    fontSize: "18px",
+    color: "#555",
+    marginBottom: "40px",
+    textAlign: "center",
+    maxWidth: "600px",
+    marginTop: "0"
   };
 
   const labelStyle = {
@@ -61,8 +76,21 @@ const RegisterUser = () => {
 
   return (
     <div style={containerStyle}>
-      <form onSubmit={handleSubmit} style={formStyle}>
-        <h2 style={headingStyle}>User Registration</h2>
+      <div >
+          <img
+            src="/assets/custmor.png"
+            alt="Homeiq Logo"
+            className="w-[600px] "
+          />       
+
+        </div>
+      <form data-aos="fade-left"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" onSubmit={handleSubmit} style={formStyle}>
+        <h2 style={headingStyle}>Make life easier</h2>
+        <p style={subtitleStyle}>
+          register now to book trusted home services.</p>
+       
 
         <div>
           <label htmlFor="full_name" style={labelStyle}>Full Name</label>

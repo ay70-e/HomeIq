@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import axios from "axios";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import FormInput from "../components/FormInput";
 import Button from "../components/Button";
 
 const Login = () => {
+   useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   const [formData, setFormData] = useState({ phone_no: "", password: "" });
 
   const handleChange = (e) => {
@@ -26,7 +31,7 @@ const Login = () => {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    backgroundColor: "#faf5eb", 
+    backgroundColor: "#f3f8f6", 
   };
 
   const formStyle = {
@@ -46,13 +51,27 @@ const Login = () => {
     fontSize: "1.25rem", // text-xl
     fontWeight: "700",
     textAlign: "center",
-    color: "#c86e3e", 
+   color: "#3bb273",
+  
   };
 
+
+
   return (
+
     <div style={containerStyle}>
-      <form onSubmit={handleSubmit} style={formStyle}>
-        <h2 style={headingStyle}>Login</h2>
+    <div >
+          <img 
+            src="/assets/admin1.png"
+            alt="Homeiq Logo"
+            className="w-[600px] "
+          />       
+
+        </div>
+      <form data-aos="fade-left"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" onSubmit={handleSubmit} style={formStyle}>
+        <h2 style={headingStyle}>Welcome back!</h2>
 
         {/* Form inputs */}
         <FormInput
@@ -75,7 +94,8 @@ const Login = () => {
 
         {/* Button */}
         <Button text="Login" />
-      </form>
+      </form> 
+       
     </div>
   );
 };

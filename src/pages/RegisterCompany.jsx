@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import axios from "axios";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import FormInput from "../components/FormInput";
 import Button from "../components/Button";
 
 const RegisterCompany = () => {
+   useEffect(() => {
+      AOS.init({ duration: 2000 });
+    }, []);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,7 +40,7 @@ const RegisterCompany = () => {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    backgroundColor: "#faf5eb",
+    backgroundColor: "#f3f8f6",
   };
 
   const formStyle = {
@@ -50,12 +55,21 @@ const RegisterCompany = () => {
   };
 
   const headingStyle = {
-    fontSize: "1.25rem",
+    fontSize: "1.25rem", // text-xl
     fontWeight: "700",
     textAlign: "center",
-    color: "#c86e3e"
+   color: "#3bb273",
+    marginBottom: "1px"
   };
 
+  const subtitleStyle = {
+    fontSize: "18px",
+    color: "#555",
+    marginBottom: "40px",
+    textAlign: "center",
+    maxWidth: "600px",
+    marginTop: "0"
+  };
   const labelStyle = {
     fontWeight: 500,
     marginBottom: "0.25rem",
@@ -64,9 +78,15 @@ const RegisterCompany = () => {
 
   return (
     <div style={containerStyle}>
-      <form onSubmit={handleSubmit} style={formStyle}>
-        <h2 style={headingStyle}>Company Registration</h2>
+     
+      <form data-aos="fade-right"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" onSubmit={handleSubmit} style={formStyle}>
+        <h2 style={headingStyle}>Grow your business</h2>
 
+        <p style={subtitleStyle}>
+          register your company today to reach more customers.</p>
+       
         <div>
           <label htmlFor="name" style={labelStyle}>Company Name</label>
           <FormInput
@@ -135,6 +155,14 @@ const RegisterCompany = () => {
 
         <Button text="Register" />
       </form>
+       <div >
+          <img
+            src="/assets/company1.png"
+            alt="company"
+            className="w-[600px] "
+          />       
+
+        </div>
     </div>
   );
 };

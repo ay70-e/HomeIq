@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import axios from "axios";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import FormInput from "../components/FormInput";
 import Button from "../components/Button";
 
 const RegisterAdmin = () => {
+   useEffect(() => {
+      AOS.init({ duration: 2000 });
+    }, []);
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
@@ -31,7 +36,7 @@ const RegisterAdmin = () => {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    backgroundColor: "#faf5eb", 
+    backgroundColor: "#f3f8f6", 
   };
 
   const formStyle = {
@@ -45,11 +50,21 @@ const RegisterAdmin = () => {
     gap: "1rem",
   };
 
-  const headingStyle = {
-    fontSize: "1.25rem",
+   const headingStyle = {
+    fontSize: "1.25rem", // text-xl
     fontWeight: "700",
     textAlign: "center",
-    color: "#f97316", // orange-600
+   color: "#3bb273",
+    marginBottom: "1px"
+  };
+
+  const subtitleStyle = {
+    fontSize: "18px",
+    color: "#555",
+    marginBottom: "40px",
+    textAlign: "center",
+    maxWidth: "600px",
+    marginTop: "0"
   };
 
    const labelStyle = {
@@ -60,9 +75,20 @@ const RegisterAdmin = () => {
 
   return (
     <div style={containerStyle}>
-      <form onSubmit={handleSubmit} style={formStyle}>
-        <h2 style={headingStyle}>Admin Registration</h2>
+         <div >
+          <img
+            src="/assets/admin1.png"
+            alt="admin"
+            className="w-[600px] "
+          />       
 
+        </div>
+      <form data-aos="fade-left"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" onSubmit={handleSubmit} style={formStyle}>
+        <h2 style={headingStyle}>Admin access</h2>
+        <p style={subtitleStyle}>
+          control, manage, and maintain the platform.</p>
         <div>
           <label htmlFor="full_name" style={labelStyle}>Full Name</label>
           <FormInput
@@ -109,6 +135,7 @@ const RegisterAdmin = () => {
 
         <Button text="Register" />
       </form>
+   
     </div>
   );
 };
