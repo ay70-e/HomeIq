@@ -1,0 +1,72 @@
+.categories-page {
+  padding: 32px;
+  background-color: #f3f8f6;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.categories-title {
+  font-size: 28px;
+  color:#304830;
+  margin-bottom: 32px;
+}
+
+.categories-grid {
+   display: grid;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "card1 card2 card3"
+    "card4 card5 card6";
+  gap: 32px;
+  justify-content: center;
+}
+
+.category-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+}
+
+.category-icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 16px;
+  background-color: white;
+  object-fit: contain;
+}
+
+.category-name {
+  font-size: 20px;
+  color: #304830;
+  margin-bottom: 8px;
+}
+
+.category-description {
+  font-size: 14px;
+  color: #82bd82;
+  margin-bottom: 16px;
+}
+
+.category-button {
+  background-color: #5AC18E;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.category-button:hover {
+  background-color: #4a9c73;
+}

@@ -23,7 +23,7 @@ exports.createOrder = async (req, res) => {
       date
     } = req.body;
 
-    // التحقق من الحقول المطلوبة
+    
     if (!service_id || !company_id || !date) {
       return res.status(400).json({
         message: 'Please provide service_id, company_id, and date'
