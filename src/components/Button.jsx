@@ -11,11 +11,11 @@ const Button = ({ text, onClick }) => {
     overflow: "hidden",
     fontSize: "0.875rem", // text-sm
     fontWeight: 500,
-    color: hover ? "#faf5eb" : "#3e3a37",
-    borderRadius: "1rem", // rounded-2xl
-    borderColor: "#a4b98e",
+    color: hover ? "#2e3b32" : "#fff",
+    borderRadius: "10px",
+    borderColor: "#3bb273",
     zIndex: 10,
-    background: "linear-gradient(to bottom right, #a4b98e, #a4b98e)",
+    background: "linear-gradient(to bottom right, #3bb273, #3bb273)",
     transition: "color 0.3s",
     cursor: "pointer",
   };
@@ -26,11 +26,11 @@ const Button = ({ text, onClick }) => {
     left: 0,
     width: "100%",
     height: hover ? "100%" : 0,
-    background: "linear-gradient(to top, #c86e3e, #c86e3e)",
+    background: "linear-gradient(to top, #4cc985,#4cc985)",
     zIndex: 0,
     transition: "height 0.7s ease-in-out",
-    borderRadius: "1rem",
-   borderColor: "#c86e3e",
+      borderRadius: "10px",
+   borderColor: "#f3f8f6",
    
 
 

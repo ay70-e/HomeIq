@@ -16,7 +16,9 @@ const Homepage = () => {
     <div className=" pt-20 h-screen bg-gradient-to-b from-[#a2b37a] to-[#6d8a3e] ">
 
       {/* Section 1 - Hero */}
-      <section className="pt-20 h-screen flex flex-col justify-center items-center px-4 relative ">
+      <section 
+      data-aos="fade-left"
+      className="pt-20 h-screen flex flex-col justify-center items-center px-4 relative ">
         <h1 className="text-5xl md:text-6xl font-extrabold mb-0 text-center drop-shadow-lg">
           Welcome to Homeiq
         </h1>

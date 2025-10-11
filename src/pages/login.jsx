@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import axios from "axios";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import FormInput from "../components/FormInput";
 import Button from "../components/Button";
 
 const Login = () => {
+   useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   const [formData, setFormData] = useState({ phone_no: "", password: "" });
 
   const handleChange = (e) => {
@@ -13,7 +18,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/login", formData);
+      const res = await axios.post("http://localhost:3000/api/auth/login", formData);
       alert(res.data.message);
       localStorage.setItem("token", res.data.token);
     } catch (err) {
@@ -26,33 +31,66 @@ const Login = () => {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    backgroundColor: "#faf5eb", 
+    backgroundColor: "#f3f8f6", 
   };
 
-  const formStyle = {
-    backgroundColor: "#ffffff",
-    boxShadow: "0 10px 15px rgba(0,0,0,0.1)",
-    padding: "2rem",
-    borderRadius: "1rem",
-    width: "20rem", // 80 Tailwind ~ 320px
-    display: "flex",
-    flexDirection: "column",
-    gap: "1rem",
-    color: "#c86e3e",
-    
-  };
 
   const headingStyle = {
     fontSize: "1.25rem", // text-xl
     fontWeight: "700",
     textAlign: "center",
-    color: "#c86e3e", 
+   color: "#3bb273",
+  
   };
+const responsiveContainer = {
+  display: "flex",
+  flexDirection: "row", // form + image side by side
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "2rem",
+  width: "100%",
+  maxWidth: "1200px",
+  margin: "0 auto",
+};
+const imageStyle = {
+  width: "100%",
+  maxWidth: "600px",
+  height: "auto",
+  borderRadius: "1rem",
+};
+  const formStyle = {
+    backgroundColor: "#ffffff",
+    boxShadow: "0 10px 15px rgba(0,0,0,0.1)",
+    padding: "2rem",
+    borderRadius: "1rem",
+    display: "flex",
+    flexDirection: "column",
+    gap: "1rem",
+    width: "100%",
+  maxWidth: "20rem",
+  maxHeight: "85vh",
+  overflowY: "auto",
+  flex: 1,   
+  };
+  
+
 
   return (
+
     <div style={containerStyle}>
-      <form onSubmit={handleSubmit} style={formStyle}>
-        <h2 style={headingStyle}>Login</h2>
+        <div style={responsiveContainer}>
+    <div >
+          <img 
+            src="/assets/admin1.png"
+            alt="Homeiq Logo"
+            style={imageStyle}
+          />       
+
+        </div>
+      <form data-aos="fade-left"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" onSubmit={handleSubmit} style={formStyle}>
+        <h2 style={headingStyle}>Welcome back!</h2>
 
         {/* Form inputs */}
         <FormInput
@@ -74,8 +112,12 @@ const Login = () => {
         />
 
         {/* Button */}
-        <Button text="Login" />
-      </form>
+        <div>
+            <Button text="Login" />
+        </div>
+      
+      </form> 
+      </div> 
     </div>
   );
 };
