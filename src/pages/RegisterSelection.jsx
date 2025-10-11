@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function RegisterSelection() {
   const navigate = useNavigate();
 
+  
   const containerStyle = {
     display: "flex",
     flexDirection: "column",

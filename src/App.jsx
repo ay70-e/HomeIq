@@ -8,18 +8,15 @@ import Homepage from "./pages/Homepage";
 import RegisterSelection from "./pages/RegisterSelection";
 import ServiceCard from "./components/ServiceCard";
 import ServiceDetails from "./pages/service";
+import DetailedOrderForm from "./components/orderform";
 const App = () => {
   return (
     <BrowserRouter>
      
 
       <Routes>
-       <Route path="/" element={<RegisterSelection />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register/user" element={<RegisterUser />} />
-        <Route path="/register/company" element={<RegisterCompany />} />
-        <Route path="/register/admin" element={<RegisterAdmin />} />
-
+       
+        <Route path="/" element={<Homepage />} />
        <Route path="/service/:id" element={<ServiceDetails />} />
         
       </Routes>

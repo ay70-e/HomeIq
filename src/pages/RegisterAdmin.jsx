@@ -38,17 +38,37 @@ const RegisterAdmin = () => {
     height: "100vh",
     backgroundColor: "#f3f8f6", 
   };
-
+const responsiveContainer = {
+  display: "flex",
+  flexDirection: "row", // form + image side by side
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "2rem",
+  width: "100%",
+  maxWidth: "1200px",
+  margin: "0 auto",
+};
+const imageStyle = {
+  width: "100%",
+  maxWidth: "600px",
+  height: "auto",
+  borderRadius: "1rem",
+};
   const formStyle = {
     backgroundColor: "#ffffff",
     boxShadow: "0 10px 15px rgba(0,0,0,0.1)",
     padding: "2rem",
     borderRadius: "1rem",
-    width: "24rem", // ~384px
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    width: "100%",
+  maxWidth: "500px",
+  maxHeight: "80vh",
+  overflowY: "auto",
+  flex: 1,   
   };
+  
 
    const headingStyle = {
     fontSize: "1.25rem", // text-xl
@@ -75,11 +95,12 @@ const RegisterAdmin = () => {
 
   return (
     <div style={containerStyle}>
+         <div style={responsiveContainer}>
          <div >
           <img
             src="/assets/admin1.png"
             alt="admin"
-            className="w-[600px] "
+              style={imageStyle}
           />       
 
         </div>
@@ -132,11 +153,11 @@ const RegisterAdmin = () => {
             autoComplete="new-password"
           />
         </div>
-
-        <Button text="Register" />
+<div><Button text="Register" /></div>
+        
       </form>
    
-    </div>
+  </div>  </div>
   );
 };
 

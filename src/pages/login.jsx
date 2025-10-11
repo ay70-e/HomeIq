@@ -34,18 +34,6 @@ const Login = () => {
     backgroundColor: "#f3f8f6", 
   };
 
-  const formStyle = {
-    backgroundColor: "#ffffff",
-    boxShadow: "0 10px 15px rgba(0,0,0,0.1)",
-    padding: "2rem",
-    borderRadius: "1rem",
-    width: "20rem", // 80 Tailwind ~ 320px
-    display: "flex",
-    flexDirection: "column",
-    gap: "1rem",
-    color: "#c86e3e",
-    
-  };
 
   const headingStyle = {
     fontSize: "1.25rem", // text-xl
@@ -54,17 +42,48 @@ const Login = () => {
    color: "#3bb273",
   
   };
-
+const responsiveContainer = {
+  display: "flex",
+  flexDirection: "row", // form + image side by side
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "2rem",
+  width: "100%",
+  maxWidth: "1200px",
+  margin: "0 auto",
+};
+const imageStyle = {
+  width: "100%",
+  maxWidth: "600px",
+  height: "auto",
+  borderRadius: "1rem",
+};
+  const formStyle = {
+    backgroundColor: "#ffffff",
+    boxShadow: "0 10px 15px rgba(0,0,0,0.1)",
+    padding: "2rem",
+    borderRadius: "1rem",
+    display: "flex",
+    flexDirection: "column",
+    gap: "1rem",
+    width: "100%",
+  maxWidth: "20rem",
+  maxHeight: "85vh",
+  overflowY: "auto",
+  flex: 1,   
+  };
+  
 
 
   return (
 
     <div style={containerStyle}>
+        <div style={responsiveContainer}>
     <div >
           <img 
             src="/assets/admin1.png"
             alt="Homeiq Logo"
-            className="w-[600px] "
+            style={imageStyle}
           />       
 
         </div>
@@ -93,9 +112,12 @@ const Login = () => {
         />
 
         {/* Button */}
-        <Button text="Login" />
+        <div>
+            <Button text="Login" />
+        </div>
+      
       </form> 
-       
+      </div> 
     </div>
   );
 };
