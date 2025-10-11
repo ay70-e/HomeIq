@@ -10,9 +10,8 @@
   
 }
 
-
 .services-grid {
-  display: flex;
+ display: flex;
   flex-direction: column;
   gap: 24px;
   align-items: flex-start;
@@ -24,8 +23,7 @@
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  width: 100%;
-  max-width: 1400px;
+  max-width: 500px;
   text-align: left;
   transition: transform 0.3s ease;
 }
@@ -48,21 +46,6 @@
   font-size: 18px;
   color: #27293D;
   margin-bottom: 16px;
-}
-
-.service-button {
-  background-color: #5AC18E;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.service-button:hover {
-  background-color: #4a9c73;
 }
 
 .services-empty {
