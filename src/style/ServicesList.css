@@ -10,26 +10,6 @@
   
 }
 
-.services-title {
-  font-size: 28px;
-  color: #b6b6b6;
-  margin-bottom: 24px;
-  text-transform: capitalize;
-}
-
-.back-button {
-  background-color: transparent;
-  border: none;
-  color: #82bd82;
-  font-size: 14px;
-  margin-bottom: 16px;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.back-button:hover {
-  color: #304830;
-}
 
 .services-grid {
   display: flex;
@@ -55,23 +35,18 @@
 }
 
 .service-image {
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 16px;
   background-color: white;
 }
 
-.service-name {
-  font-size: 20px;
-  color: #304830;
-  margin-bottom: 8px;
-}
 
 .service-description {
-  font-size: 14px;
-  color: #82bd82;
+  font-size: 18px;
+  color: #27293D;
   margin-bottom: 16px;
 }
 

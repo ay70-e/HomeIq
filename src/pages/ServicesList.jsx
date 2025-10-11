@@ -47,9 +47,6 @@ const ServicesList = () => {
             <ServiceCard key={service.id} service={service} onClick={handleOpenDetails} />
           ))}
         </div>
-        <button className="back-button" onClick={() => navigate('/services')}>
-        ← Back to Categories
-      </button>
       </>
       
       )}

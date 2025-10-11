@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import ServiceCategories from "./pages/ServiceCategories";
 import ServicesList from "./pages/ServicesList";
-
+import Service from "./pages/service";
 
 const App = () => {
   return (
@@ -10,6 +10,7 @@ const App = () => {
       <Routes>
         <Route path="/services" element={<ServiceCategories />} />
         <Route path="/services/:category" element={<ServicesList />} />
+        <Route path="/service/:id" element={<Service/>} />
       </Routes>
     </BrowserRouter>
   );
