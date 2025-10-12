@@ -63,7 +63,7 @@
 
 .category-strip {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   padding: 10px;
   background-color: #ffffff;
@@ -79,7 +79,7 @@
   align-items: center;
   cursor: pointer;
   transition: transform 0.2s ease;
-  width: 80px;
+  
 }
 
 .category-icon img {

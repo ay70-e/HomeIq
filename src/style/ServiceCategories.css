@@ -28,6 +28,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   width: 100%;
   max-width: 300px;
+  align-items: center;
   justify-content:center ;
   text-align: center;
   transition: transform 0.3s ease;
@@ -37,9 +38,9 @@
   transform: translateY(-4px);
 }
 
-.category-icon {
-  width: 120px;
-  height: 120px;
+.icon {
+  width: 80px;
+  height: 80px;
   margin-bottom: 16px;
   background-color: white;
   object-fit: contain;

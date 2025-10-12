@@ -31,6 +31,39 @@ export const servicesByCategory = {
       image: '/icons/cleaning-mop.png',
       price: 20000,
       available: false
+    },
+
+    {
+      id: 'home-cleaning',
+      name: 'Home Cleaning',
+      description: 'General cleaning for rooms, floors, and furniture.',
+      image: '/icons/house.png',
+      price: 15000,
+      available: true
+    },
+    {
+      id: 'kitchen-cleaning',
+      name: 'Kitchen Cleaning',
+      description: 'Degreasing appliances and cleaning surfaces.',
+      image: '/icons/kitchen.png',
+      price: 12000,
+      available: false
+    },
+    {
+      id: 'bathroom-cleaning',
+      name: 'Bathroom Cleaning',
+      description: 'Sanitizing toilets, sinks, and tiles.',
+      image: '/icons/wiping.png',
+      price: 10000,
+      available: true
+    },
+    {
+      id: 'deep-cleaning',
+      name: 'Deep Cleaning',
+      description: 'Detailed cleaning for all areas before events or after travel.',
+      image: '/icons/cleaning-mop.png',
+      price: 20000,
+      available: false
     }
   ],
 

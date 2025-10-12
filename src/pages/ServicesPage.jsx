@@ -36,7 +36,7 @@ const ServicesPage = () => {
   const section = document.querySelector('.services-list-wrapper');
   section?.scrollIntoView({ behavior: 'smooth' });
 }} className="banner-button">
- Browse services
+ Chosoe now
                 </button>
         </div>
 

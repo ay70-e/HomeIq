@@ -7,11 +7,13 @@ const ServiceCard = ({ service }) => {
 
   return (
     <div className="service-card" onClick={() => navigate(`/service/${service.id}`)}>
+     <div className='icon-wrapper'>
       <img src={service.image} alt={service.name} className="service-image" />
+     </div>
 
-      <div className="service-content">
         <h3 className="service-title">{service.name}</h3>
         <p className="service-description">{service.description}</p>
+
         <div className="service-footer">
           <span className="service-price">{service.price} IQD</span>
           <br/>
@@ -19,7 +21,7 @@ const ServiceCard = ({ service }) => {
             {service.available ? 'Available' : 'Not available'}
           </span>
         </div>
-      </div>
+      
     </div>
   );
 };

@@ -5,17 +5,16 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   text-align: center;
   
 }
 
 .services-grid {
- display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
-  align-items: flex-start;
   margin-top: 24px;
+  justify-content: center;
 }
 
 .service-card {
@@ -30,15 +29,6 @@
 
 .service-card:hover {
   transform: translateY(-4px);
-}
-
-.service-image {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  background-color: white;
 }
 
 
