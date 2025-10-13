@@ -187,7 +187,7 @@ const CompanyServices = () => {
             <h3>{service.name}</h3>
             <p>{service.description}</p>
             <p><strong>Category:</strong> {service.category}</p>
-            <p><strong>Price:</strong> ${service.price}</p>
+            <p><strong>Price:</strong> {service.price} IQD</p>
             {service.discount_percent && (
               <p style={{ color: "green" }}>
                 <strong>Discount:</strong> {service.discount_percent}%

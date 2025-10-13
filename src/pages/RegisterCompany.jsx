@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useNavigate } from "react-router-dom"; // ✅ for navigation
+import { useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import Button from "../components/Button";
+import { FcGoogle } from "react-icons/fc"; // Google icon
 
 const RegisterCompany = () => {
   useEffect(() => {
@@ -19,18 +20,30 @@ const RegisterCompany = () => {
     category: "",
     address: "",
     role: "company",
-    license_doc: "",
-    logo: "",
+    license_doc: "", // URL string
+    logo: "",        // URL string
+    acceptTerms: false,
   });
 
-  const navigate = useNavigate(); // ✅ navigation hook
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      setFormData({ ...formData, [name]: checked });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.acceptTerms) {
+      alert("Please accept terms and conditions!");
+      return;
+    }
+
     try {
       const res = await axios.post(
         "http://localhost:3000/api/auth/register/company",
@@ -39,19 +52,21 @@ const RegisterCompany = () => {
 
       console.log("Full response:", res.data);
 
-      // ✅ If backend sends token and role (same as login)
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("role", res.data.role);
-
         alert("Company registered successfully!");
-        navigate("/company/profile"); // redirect after registration
+        navigate("/company/profile");
       } else {
         alert(res.data.message || "Registration successful");
       }
     } catch (err) {
       alert(err.response?.data?.message || "Registration failed");
     }
+  };
+
+  const handleGoogleRegister = () => {
+    alert("Google registration coming soon");
   };
 
   // Styles
@@ -216,8 +231,69 @@ const RegisterCompany = () => {
             />
           </div>
 
+          {/* Logo URL */}
+          <div>
+            <label htmlFor="logo" style={labelStyle}>
+              Logo URL
+            </label>
+            <FormInput
+              type="text"
+              name="logo"
+              value={formData.logo}
+              onChange={handleChange}
+              placeholder="https://example.com/logo.png"
+            />
+          </div>
+
+          {/* License URL */}
+          <div>
+            <label htmlFor="license_doc" style={labelStyle}>
+              License Document URL
+            </label>
+            <FormInput
+              type="text"
+              name="license_doc"
+              value={formData.license_doc}
+              onChange={handleChange}
+              placeholder="https://example.com/license.pdf"
+            />
+          </div>
+
+          {/* Terms & Conditions */}
+          <div>
+            <input
+              type="checkbox"
+              name="acceptTerms"
+              checked={formData.acceptTerms}
+              onChange={handleChange}
+            />
+            <label> I accept terms and conditions</label>
+          </div>
+
           <div>
             <Button text="Register" />
+          </div>
+
+          {/* Google Icon Registration */}
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
+            <button
+              type="button"
+              onClick={handleGoogleRegister}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "8px 16px",
+                borderRadius: "8px",
+                border: "1px solid #ccc",
+                backgroundColor: "#fff",
+                cursor: "pointer",
+                fontWeight: "500",
+                fontSize: "14px",
+              }}
+            >
+              <FcGoogle size={24} /> Sign up with Google
+            </button>
           </div>
         </form>
 

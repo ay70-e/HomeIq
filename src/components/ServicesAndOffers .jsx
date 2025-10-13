@@ -88,7 +88,7 @@ const ServicesAndOffers = () => {
             <h3>{service.name}</h3>
             <p>{service.description}</p>
             <p>Category: {service.category}</p>
-            <p>Price: ${service.price}</p>
+            <p>Price:IQD{service.price}</p>
           </div>
         ))}
       </div>
@@ -115,9 +115,9 @@ const ServicesAndOffers = () => {
               <h3>{offer.title}</h3>
               <p>{offer.description}</p>
               <p>
-                Original: <del>${service.price}</del>
+                Original: <del>{service.price} IQD</del>
               </p>
-              <p style={{ fontWeight: "bold" }}>Now: ${discountedPrice}</p>
+              <p style={{ fontWeight: "bold" }}>Now: {discountedPrice} IQD</p>
               <p>Discount: {offer.discount_percent}%</p>
               <p>Valid until: {new Date(offer.valid_until).toLocaleDateString()}</p>
               <button

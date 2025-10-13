@@ -78,10 +78,52 @@ const CompanyDashboard = () => {
       })
       .finally(() => setLoading(false));
   }, []);
-  
+  const Loader = () => {
+  return (
+    <div style={loaderContainer}>
+      <div style={spinner}></div>
+      <p style={loaderText}>Loading company data...</p>
+    </div>
+  );
+};
+
+// Styles
+const loaderContainer = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  minHeight: "80vh",
+  gap: "20px",
+};
+
+const spinner = {
+  width: "60px",
+  height: "60px",
+  border: "8px solid #f3f3f3",
+  borderTop: "8px solid #3bb273", // your theme color
+  borderRadius: "50%",
+  animation: "spin 1s linear infinite",
+};
+
+const loaderText = {
+  fontSize: "18px",
+  fontWeight: "500",
+  color: "#555",
+};
+
+// Add global CSS for keyframes
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}`;
+document.head.appendChild(style);
 
 
-  if (loading) return <p>Loading company data...</p>;
+if (loading) return <Loader />;
+
 
   // Chart data
   const smallPie = (value, color) => ({
@@ -94,9 +136,9 @@ const CompanyDashboard = () => {
       }
     ]
   });
-const orders = company.stats?.orders ?? 0;
-const activeServices = company.stats?.activeServices ?? 0;
-const pendingRequests = company.stats?.pendingRequests ?? 0;
+const orders = company.stats?.orders ?? 1;
+const activeServices = company.stats?.activeServices ?? 1;
+const pendingRequests = company.stats?.pendingRequests ?? 3;
 
   const barData = {
     labels: ["Orders", "Active Services", "Pending"],
