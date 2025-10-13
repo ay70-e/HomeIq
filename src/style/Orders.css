@@ -1,0 +1,130 @@
+.orders-page {
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+.orders-page h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.filter-button:hover {
+  background-color: rgb(235, 245, 255);
+ color:  rgb(93, 173, 236);
+  font-weight: 600;
+  box-shadow: 0 0 6px 1px rgba(93, 173, 236, 0.7);
+}
+
+.filter-button.active {
+  background-color: rgb(115, 83, 186);
+  color: white;
+  border-color: rgb(115, 83, 186);
+}
+.filter-button.active:hover {
+  box-shadow: 0 0 6px 1px rgba(205, 93, 236, 0.7);
+}
+.orders-table {
+  width: 100%;
+  border-collapse: separate; /* 👈 غيّرها من collapse إلى separate */
+  border-spacing: 0; /* يمنع الفراغ بين الخلايا */
+  background-color: white;
+  border-radius: 8px;
+  color: #2f3a78;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+.orders-table th,
+.orders-table td {
+  padding: 1.2rem 1.2rem ;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  font-size: 01.02rem;
+  border-left: none;
+  border-right: none;
+
+}
+
+.orders-table th {
+  background-color: #5DADEC;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+}
+
+.orders-table tr{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+}
+
+.orders-table tr:last-child {
+  border-bottom: none;
+}
+
+
+.orders-table tr:hover {
+   transform: scale(1.02);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  background-color: rgb(235, 245, 255);
+  color:  rgb(93, 173, 236);
+  font-weight: 600;
+  box-shadow: 0 0 10px 2px rgba(93, 173, 236, 0.7);
+
+  
+}
+
+.orders-table tr:hover th {
+  border-left: 2px solid rgb(93, 173, 236);
+  border-right: 2px solid rgb(93, 173, 236);
+}
+.orders-table tr:hover td{
+   border-left: 2px solid   rgb(235, 245, 255);
+  border-right: 2px solid  rgb(235, 245, 255);
+}
+
+.status-cell {
+  text-transform: capitalize;
+}
+
+.status-cell.pending {
+  color: #4591dcff; 
+}
+
+.status-cell.completed {
+  color: #5AC18E; 
+}
+
+.status-cell.dispatch {
+  color: #7353BA;
+}
+
+.status-cell.cancelled {
+  color: #e11515ff; 
+}

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect} from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useNavigate, useParams } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import ServiceCategories from '../pages/ServiceCategories';
@@ -15,15 +17,18 @@ const categories = [
 ];
 
 const ServicesPage = () => {
+  
   const navigate = useNavigate();
   const { category } = useParams(); 
 
   const handleCategoryClick = (categoryValue) => {
     navigate(`/services/${categoryValue}`);
   };
-
+ useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   return (
-    <div className="services-page">
+    <div  className="services-page">
       
       <div className="banner-section">
         <div className='banner-background'></div>
@@ -36,11 +41,15 @@ const ServicesPage = () => {
   const section = document.querySelector('.services-list-wrapper');
   section?.scrollIntoView({ behavior: 'smooth' });
 }} className="banner-button">
- Browse services
+ Chosoe now
                 </button>
         </div>
 
-         <div className="banner-image">
+         <div 
+          data-aos="fade-left"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+          className="banner-image">
     <img src="/assets/home.png" alt="Customer Support" />
          </div>
      </div>
@@ -54,7 +63,8 @@ const ServicesPage = () => {
         ))}
       </div>
      
-      <div className="services-list-wrapper">
+      <div 
+       className="services-list-wrapper">
         {category ? (
           <ServicesList category={category} />
         ) : (

@@ -7,6 +7,7 @@ import CompanyServices from "../components/CompanyServices";
 import AddServiceDashboard from "../components/AddServiceDashboard";
 import UpgradeToPro from "../components/UpgradeToPro";
 import CompanyReviews from "./CompanyReviews"; // default import, no curly braces
+import Orders from "./Orders";
 
 import {
   Chart as ChartJS,
@@ -534,7 +535,7 @@ const fakeAbout = {
         )}
 
         {/* Orders / Services / Support */}
-        {activeTab === "Orders" && <div style={cardStyle}><h4>Orders</h4><p>No orders to display yet.</p></div>}
+        {activeTab === "Orders" && <div > <Orders /></div>}
         {activeTab === "Add Services" && ( <div>
           <div style={{fontSize: "24px",fontWeight: "bold", color: "#27293D"}}>
             Welcome to your Service Management Dashboard!  </div>

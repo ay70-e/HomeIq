@@ -49,12 +49,15 @@ const ServiceCategories = () => {
   };
 
   return (
-    <div className="categories-page">
+  <div className="categories-page">
+
       <h1 className="categories-title">Choose a Service Category</h1>
+
       <div className="categories-grid">
+
         {categories.map((category) => (
           <div key={category.value} className="category-card">
-            <img src={category.image} alt={category.name} className="category-icon" />
+            <img src={category.image} alt={category.name} className="icon" />
             <h2 className="category-name">{category.name}</h2>
             <p className="category-description">{category.description}</p>
             <button className="category-button" onClick={() => handleClick(category.value)}>
@@ -62,8 +65,10 @@ const ServiceCategories = () => {
             </button>
           </div>
         ))}
+      
       </div>
-    </div>
+
+  </div>
   );
 };
 
