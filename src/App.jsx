@@ -4,6 +4,7 @@ import ServiceCategories from "./pages/ServiceCategories";
 import ServicesList from "./pages/ServicesList";
 import Service from "./pages/service";
 import ServicesPage from "./pages/ServicesPage";
+import Orders from './pages/Orders'; 
 const App = () => {
   return (
     <BrowserRouter>
@@ -11,7 +12,7 @@ const App = () => {
         <Route path="/services" element={<ServiceCategories />} />
         <Route path="/services/:category" element={<ServicesPage />} />
         <Route path="/service/:id" element={<Service/>} />
-
+        <Route path="/orders" element={<Orders />} />
       </Routes>
     </BrowserRouter>
   );
