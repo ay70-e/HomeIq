@@ -55,14 +55,21 @@ const ServicesPage = () => {
      </div>
 
       <div className="category-strip">
-        {categories.map((cat) => (
-          <div key={cat.value} className="category-icon" onClick={() => handleCategoryClick(cat.value)}>
-            <img src={cat.icon} alt={cat.name} />
-            <span>{cat.name}</span>
-          </div>
-        ))}
-      </div>
-     
+  {categories.map((cat, index) => (
+    <div 
+      key={cat.value} 
+      className="category-icon" 
+      onClick={() => handleCategoryClick(cat.value)}
+      data-aos="zoom-in"            
+      data-aos-delay={index * 250}  
+      data-aos-duration="800"        
+    >
+      <img src={cat.icon} alt={cat.name} />
+      <span>{cat.name}</span>
+    </div>
+  ))}
+</div>
+
       <div 
        className="services-list-wrapper">
         {category ? (

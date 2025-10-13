@@ -46,13 +46,16 @@ const ServicesList = () => {
         <p className="services-empty">No services found</p>
       ) : (
         <>
-        <div data-aos="fade-up"
-          
-        className="services-grid">
-          {filteredServices.map(service => (
-            <ServiceCard key={service.id} service={service} onClick={handleOpenDetails} />
-          ))}
-        </div>
+       <div className="services-grid">
+  {filteredServices.map((service, index) => (
+    <ServiceCard
+      key={service.id}
+      service={service}
+      aosDelay={index * 150}  
+    />
+  ))}
+</div>
+
       </>
       
       )}

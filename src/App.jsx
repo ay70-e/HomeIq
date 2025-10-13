@@ -10,12 +10,15 @@ import Login from "./pages/login";
 import RegisterUser from "./pages/RegisterUser";
 import RegisterCompany from "./pages/RegisterCompany";
 import RegisterAdmin from "./pages/RegisterAdmin";
-import Homepage from "./pages/Homepage";
+import Homepage from "./pages/homepage";
 import RegisterSelection from "./pages/RegisterSelection";
+import UserProfile from "./pages/UserProfile";
+import Contact from "./pages/Contact";
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/company/profile" element={<CompanyDashboard />} /> // correct capitalization
         <Route path="/RegisterSelection" element={<RegisterSelection />} />
@@ -27,6 +30,7 @@ const App = () => {
         <Route path="/service/:id" element={<Service/>} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/company" element={<CompanyDashboard />} />
+        <Route path="/Contact" element={<Contact />} />
 
       </Routes>
     </BrowserRouter>
@@ -34,3 +38,8 @@ const App = () => {
 };
 
 export default App;
+
+
+
+
+
