@@ -8,8 +8,10 @@ import Homepage from "./pages/Homepage";
 import RegisterSelection from "./pages/RegisterSelection";
 import ServiceDetails from "./pages/service";
 import DetailedOrderForm from "./components/orderform";
-import CompanyDashboard from "./pages/companyDashboard"; // ✅ match your file name
+import CompanyDashboard from "./pages/companyDashboard"; 
 import ServicesAndOffers from "./components/ServicesAndOffers ";
+import ServicesList from "./pages/ServicesList";
+import ServiceCategories from "./components/ServiceCategories";
 
 const App = () => {
   return (
@@ -24,6 +26,7 @@ const App = () => {
         <Route path="/register/user" element={<RegisterUser />} />
         <Route path="/register/company" element={<RegisterCompany />} />
         <Route path="/register/admin" element={<RegisterAdmin />} />
+       
       </Routes>
     </BrowserRouter>
   );
