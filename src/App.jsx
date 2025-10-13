@@ -5,6 +5,14 @@ import ServicesList from "./pages/ServicesList";
 import Service from "./pages/service";
 import ServicesPage from "./pages/ServicesPage";
 import Orders from './pages/Orders'; 
+import CompanyDashboard from "./pages/companyDashboard";
+import AdminDashboard from "./pages/adminDashboard";
+import Login from "./pages/login";
+import RegisterUser from "./pages/RegisterUser";
+import RegisterCompany from "./pages/RegisterCompany";
+import RegisterAdmin from "./pages/RegisterAdmin";
+import Homepage from "./pages/Homepage";
+import RegisterSelection from "./pages/RegisterSelection";
 const App = () => {
   return (
     <BrowserRouter>
@@ -13,6 +21,8 @@ const App = () => {
         <Route path="/services/:category" element={<ServicesPage />} />
         <Route path="/service/:id" element={<Service/>} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/company" element={<CompanyDashboard />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
     </BrowserRouter>
   );

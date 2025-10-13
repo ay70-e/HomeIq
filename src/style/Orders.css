@@ -29,7 +29,14 @@
 }
 
 .filter-button:hover {
+<<<<<<< Updated upstream
   background-color: #eaeaea;
+=======
+  background-color: rgb(235, 245, 255);
+ color:  rgb(93, 173, 236);
+  font-weight: 400;
+  box-shadow: 0 0 6px 1px rgba(93, 173, 236, 0.7);
+>>>>>>> Stashed changes
 }
 
 .filter-button.active {
@@ -96,6 +103,7 @@
 
 .status-cell {
   text-transform: capitalize;
+  font-weight: 600;
 }
 
 .status-cell.pending {
