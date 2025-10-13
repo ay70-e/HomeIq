@@ -1,75 +1,135 @@
-import React from "react";
+// Navbar.jsx
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-const Navbar = () => {
+export default function Navbar() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    AOS.init({ duration: 800, easing: "ease-out-cubic", once: true });
+  }, []);
+
+  const links = ["Home", "Services", "About", "Contact"];
+
+  const handleLinkClick = (link) => {
+    switch (link) {
+      case "Home":
+        document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
+        break;
+      case "About":
+        document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+        break;
+      default:
+        // Services و Contact بدون رابط حاليا
+        break;
+    }
+  };
+
   return (
-    <div className="bg-[#faf5eb] ">
-   
-
-        {/* Navigation Buttons */}
-     <nav className=" flex items-center justify-between px-6 py-4 bg-white shadow-md">
-  {/* Left Section - Logo or Brand */}
-    <div className="w-24">
-          <img
-            src="/assets/logo1.png"
-            alt="Homeiq Logo"
-            className="w-[120px]  "
-          /> 
+    <nav
+      data-aos="fade-down"
+      style={{
+        width: "100%",
+        backgroundColor: "#27293D",
+        color: "white",
+        boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+        fontFamily: "sans-serif",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "1rem 2rem",
+        }}
+      >
+        {/* Logo */}
+        <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={() => handleLinkClick("Home")}>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: "bold", letterSpacing: "-0.5px" }}>
+            Home<span style={{ color: "#7353BA" }}>iq</span>
+          </h1>
         </div>
 
- 
+        {/* Links */}
+        <ul
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "2rem",
+            fontSize: "0.9375rem",
+            fontWeight: 500,
+            listStyle: "none",
+            margin: 0,
+            padding: 0,
+          }}
+        >
+          {links.map((link, idx) => (
+            <li
+              key={idx}
+              data-aos="fade-down"
+              data-aos-delay={idx * 100}
+              style={{ cursor: "pointer", transition: "all 0.2s ease" }}
+              onClick={() => handleLinkClick(link)}
+              onMouseEnter={(e) => (e.target.style.color = "#5DADEC")}
+              onMouseLeave={(e) => (e.target.style.color = "white")}
+            >
+              {link}
+            </li>
+          ))}
+        </ul>
 
-  {/* Right Section - Buttons */}
- {/* Center + Right Section - Navigation Links and Buttons */}
-<div className="flex items-center gap-6 font-medium">
-  {/* Navigation Links */}
-  <div className="flex gap-4 text-[#c86e3e]">
-    <a
-      href="#"
-      className=" no-underline hover:underline hover:decoration-[#E87722] hover:underline-offset-4 transition-colors"
-    >
-      Services
-    </a>
-    <a
-      href="#"
-      className=" no-underline hover:underline hover:decoration-[#E87722] hover:underline-offset-4 transition-colors"
-    >
-      Products
-    </a>
-    <a
-      href="#"
-      className=" no-underline hover:underline hover:decoration-[#E87722] hover:underline-offset-4 transition-colors"
-    >
-      About Us
-    </a>
-    <a
-      href="#"
-      className=" no-underline hover:underline hover:decoration-[#E87722] hover:underline-offset-4 transition-colors"
-    >
-      Contact
-    </a>
-  </div>
+        {/* Buttons */}
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          {/* Log in */}
+          <button
+            data-aos="fade-down"
+            data-aos-delay={links.length * 100 + 100}
+            style={{
+              padding: "0.5rem 1.25rem",
+              borderRadius: "0.5rem",
+              fontWeight: 600,
+              border: "1px solid #5DADEC",
+              color: "#5DADEC",
+              backgroundColor: "transparent",
+              cursor: "pointer",
+              transition: "all 0.25s ease",
+            }}
+            onClick={() => navigate("/login")}
+            onMouseEnter={(e) => { e.target.style.backgroundColor = "#5DADEC"; e.target.style.color = "white"; }}
+            onMouseLeave={(e) => { e.target.style.backgroundColor = "transparent"; e.target.style.color = "#5DADEC"; }}
+          >
+            Log in
+          </button>
 
-  {/* Buttons */}
-  <div className="flex items-center space-x-3">
-    <button className="bg-[#faf5eb] border border-[#c86e3e]
-     text-[#c86e3e] rounded-full px-5 py-1 hover:scale-105 ">
-      Login
-    </button>
-    <button className="bg-[#faf5eb] border border-[#c86e3e]
-     text-[#c86e3e] rounded-full px-5 py-1 hover:scale-105 ">
-      Sign Up
-    </button>
-   
-  </div>
-</div>
-</nav>
-   
-
-     
-     
-    </div>
-   
+          {/* Sign up */}
+          <button
+            data-aos="fade-down"
+            data-aos-delay={links.length * 100 + 200}
+            style={{
+              padding: "0.5rem 1.25rem",
+              borderRadius: "0.5rem",
+              fontWeight: 600,
+              border: "none",
+              backgroundColor: "#7353BA",
+              color: "white",
+              cursor: "pointer",
+              transition: "all 0.25s ease",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+            }}
+            onClick={() => navigate("/RegisterSelection")}
+            onMouseEnter={(e) => { e.target.style.backgroundColor = "#5DADEC"; e.target.style.boxShadow = "0 6px 15px rgba(0,0,0,0.3)"; }}
+            onMouseLeave={(e) => { e.target.style.backgroundColor = "#7353BA"; e.target.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)"; }}
+          >
+            Sign up
+          </button>
+        </div>
+      </div>
+    </nav>
   );
-};
+}
 
-export default Navbar;
