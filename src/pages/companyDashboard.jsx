@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import FeatureAlert from "../components/FeatureAlert";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
@@ -6,7 +7,7 @@ import ChatBox from "../components/ChatBox";
 import CompanyServices from "../components/CompanyServices";
 import AddServiceDashboard from "../components/AddServiceDashboard";
 import UpgradeToPro from "../components/UpgradeToPro";
-import CompanyReviews from "./CompanyReviews"; // default import, no curly braces
+import CompanyReviews from "./CompanyReviews"; 
 import Orders from "./Orders";
 
 import {
@@ -59,6 +60,14 @@ const CompanyDashboard = () => {
  useEffect(() => {
     AOS.init({ duration: 2000 });
   }, []);
+   useEffect(() => {
+    if (activeTab === "Settings") {
+      setShowAlert(true);
+    }
+  }, [activeTab]);
+
+
+const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:3000/api/company/profile", {
@@ -612,9 +621,17 @@ const fakeAbout = {
         />
           </div></div>
         ) }
-        {activeTab === "Settings" && <div style={cardStyle}><h4>Settings</h4> <p>Settings options will be available here soon.</p></div>}
+        {activeTab === "Settings" && (
+        <div style={cardStyle}>
+          <h4>Settings</h4>
+          <p>Settings options will be available here soon.</p>
+        </div>  )}
       </div>
-    
+    <FeatureAlert
+        show={showAlert}
+        onClose={() => setShowAlert(false)}
+        featureName="Settings Panel"
+      />
     </div>
   );
 };

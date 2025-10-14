@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import FeatureAlert from "../components/FeatureAlert";
 import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -11,6 +12,8 @@ const RegisterCompany = () => {
   useEffect(() => {
     AOS.init({ duration: 2000 });
   }, []);
+const [showAlert, setShowAlert] = useState(false);
+const [alertFeature, setAlertFeature] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -66,7 +69,8 @@ const RegisterCompany = () => {
   };
 
   const handleGoogleRegister = () => {
-    alert("Google registration coming soon");
+      
+      setShowAlert(true);
   };
 
   // Styles
@@ -301,7 +305,14 @@ const RegisterCompany = () => {
           <img src="/assets/company1.png" alt="company" style={imageStyle} />
         </div>
       </div>
+      <FeatureAlert
+  show={showAlert}
+  onClose={() => setShowAlert(false)}
+  featureName={alertFeature}
+/>
+
     </div>
+    
   );
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../style/ServiceCategories.css';
+import Navbar from '../components/navbar';
 
 const categories = [
   {
@@ -66,7 +67,9 @@ const ServiceCategories = () => {
   };
 
   return (
+    <div>  <Navbar />
     <div className="categories-page">
+     
       <h1 className="categories-title">Choose a Service Category</h1>
 
       <motion.div
@@ -92,7 +95,7 @@ const ServiceCategories = () => {
           </motion.div>
         ))}
       </motion.div>
-    </div>
+    </div></div>
   );
 };
 

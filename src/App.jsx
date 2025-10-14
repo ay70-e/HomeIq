@@ -14,8 +14,11 @@ import Homepage from "./pages/homepage";
 import RegisterSelection from "./pages/RegisterSelection";
 import UserProfile from "./pages/UserProfile";
 import Contact from "./pages/Contact";
+import Navbar from "./components/navbar";
+
 const App = () => {
   return (
+    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />
