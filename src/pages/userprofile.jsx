@@ -4,7 +4,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import OrdersTable from "../components/OrdersTable";
 import { useNavigate } from "react-router-dom";
-import UpgradeToPro from "../components/UpgradeToPro";
+import FeatureAlert from "../components/FeatureAlert";
+
 
 const PALETTE = {
   icyBlue: "#EBF5FF",
@@ -28,7 +29,8 @@ export default function UserProfilePage() {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showPremiumCard, setShowPremiumCard] = useState(false);
   
-
+  const [showAlert, setShowAlert] = useState(false);
+  const [featureName, setFeatureName] = useState("");
   const [user, setUser] = useState({
     full_name: "Amir Al-Haddad",
     phone_no: "+964 770 123 4567",
@@ -84,7 +86,7 @@ const loaderContainer = {
   minHeight: "80vh",
   gap: "20px",
 };
-const [showUpgrade, setShowUpgrade] = useState(false);
+
 
 const spinner = {
   width: "60px",
@@ -130,10 +132,7 @@ const loaderText = {
     alert("Password changed successfully!");
   }
 
-  function upgradePremium() {
-    setShowPremiumCard(false);
-    alert("Account upgraded to Premium!");
-  }
+ 
 
  
 
@@ -216,8 +215,8 @@ const loaderText = {
             label="Language"
             icon="🌐"
             onClick={() => {
-              setActiveTab("language");
-              setShowPremiumCard(true);
+              setFeatureName("language");
+              setShowAlert(true);
             }}
           />
           <SidebarItem
@@ -231,10 +230,12 @@ const loaderText = {
             active={false}
             label="Logout"
             icon="🚪"
-            onClick={() => setShowUpgrade(true)}
-          />
+            onClick={() => {
+            setFeatureName("Logout");
+            setShowAlert(true);
+          }}  />
         </nav>
-
+ 
         <div style={{ flex: 1 }} />
 
         {/* Dark mode toggle below Logout */}
@@ -253,7 +254,20 @@ const loaderText = {
           {darkMode ? "Light Mode" : "Dark Mode"}
         </button>
       </aside>
-
+ {showAlert && (
+  <FeatureAlert
+    show={showAlert}
+    onClose={() => setShowAlert(false)}
+    featureName={featureName}
+    onConfirm={() => {
+      if (featureName === "Logout") {
+        localStorage.removeItem("token");
+        setShowAlert(false);
+        navigate("/login");
+      }
+    }}
+  />
+)}
       {/* MAIN AREA */}
       <main style={{ flex: 1, padding: 28, display: "flex", justifyContent: "center" }}>
         <div style={{ width: 980 }}>
@@ -599,7 +613,8 @@ function ChangePasswordModal({ onClose, onSave, darkMode }) {
   );
 }
 
-function PremiumModal({ onClose, darkMode }) {
+function PremiumModal({ onClose, darkMode,show, onConfirm }) {
+   if (!show) return null;
   const bg = darkMode ? PALETTE.cardDark : "#fff";
   const text = darkMode ? PALETTE.white : PALETTE.nearBlack;
   return (
@@ -607,8 +622,33 @@ function PremiumModal({ onClose, darkMode }) {
       <h3 style={{ marginBottom: 12 }}>Upgrade to Premium</h3>
       <p style={{ marginBottom: 12 }}>Upgrade your account to enjoy premium features!</p>
       <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
-        <button onClick={onClose} style={{ padding: "8px 12px", borderRadius: 6 }}>Cancel</button>
-        <button onClick={() => { alert("Account upgraded to Premium!"); onClose(); }} style={{ padding: "8px 12px", borderRadius: 6, background: PALETTE.strongViolet, color: "#fff" }}>Upgrade</button>
+      
+       <button
+            onClick={onClose}
+            style={{
+              padding: "8px 12px",
+              borderRadius: 6,
+              border: "1px solid #aaa",
+              background: "#eee",
+              cursor: "pointer",
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            onClick={onConfirm}
+            style={{
+              padding: "8px 12px",
+              borderRadius: 6,
+              background: "#ff5555",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            Confirm
+          </button>
+    
       </div>
     </div>
   );
@@ -625,7 +665,7 @@ function StatsCards({ darkMode }) {
     { label: "Loyalty Points", value: 120, icon: "🏆" },
   ];
   return (
-    <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
+    <div style={{ display: "flex", gap: 12, marginTop: 12,marginBottom: 4 }}>
       {stats.map((s, idx) => (
         <div
           key={idx}
@@ -672,8 +712,8 @@ function ActivityFeed({ darkMode }) {
     { icon: "💳", text: "Payment received", time: "3d ago" },
   ];
   return (
-    <div style={{ marginTop: 8 }}>
-      <h4 style={{ marginBottom: 8, color: PALETTE.strongViolet }}>Recent Activity</h4>
+    <div style={{ marginTop: 0 }}>
+      <h4 style={{ marginBottom: 8,marginTop:0, color: PALETTE.strongViolet }}>Recent Activity</h4>
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         {activities.map((a, idx) => (
           <div
@@ -745,6 +785,7 @@ function QuickActions({ darkMode, navigate }) {
       >
         Add Favorite Service
       </button>
+    
     </div>
   );
 }

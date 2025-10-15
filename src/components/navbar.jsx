@@ -64,7 +64,7 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "1rem 2rem",
+          padding: "5px",
         }}
       >
         {/* Logo */}
@@ -73,15 +73,18 @@ export default function Navbar() {
           style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
           onClick={() => handleLinkClick("Home")}
         >
-          <h1
-            style={{
-              fontSize: "1.5rem",
-              fontWeight: "bold",
-              letterSpacing: "-0.5px",
-            }}
-          >
-            Home<span style={{ color: "#7353BA" }}>iq</span>
-          </h1>
+     <img
+  src="/assets/logo.PNG"
+  alt="HomeIQ Logo"
+  style={{
+    height: "60px",    // try 50–70px depending on navbar height
+    width: "auto",
+    objectFit: "contain",
+    cursor: "pointer",
+  }}
+/>
+
+
         </motion.div>
 
         {/* Links */}
