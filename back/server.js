@@ -15,6 +15,8 @@ const orderRoutes = require('./routes/orderRoutes');
 const offerRoutes = require('./routes/offerRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
+const userRoutes = require('./routes/userRoutes');
+
 
 
 // Middleware
@@ -35,6 +37,7 @@ app.use('/api/order', orderRoutes);
 app.use('/api/offer', offerRoutes);
 app.use('/api/review', reviewRoutes);
 app.use('/api/service', serviceRoutes);
+app.use('/api/user', userRoutes);
 
 sequelize.authenticate()
   .then(() => {

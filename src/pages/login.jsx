@@ -36,7 +36,7 @@ const handleSubmit = async (e) => {
     } else if (role === "admin") {
       navigate("/admin");
     } else if (role === "user") {
-      navigate(`/user/${id}`);
+      navigate("/user/profile");
     } else {
       navigate("/login");
     }
