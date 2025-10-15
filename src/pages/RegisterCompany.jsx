@@ -23,8 +23,8 @@ const [alertFeature, setAlertFeature] = useState("");
     category: "",
     address: "",
     role: "company",
-    license_doc: "", // URL string
-    logo: "",        // URL string
+    license_doc: "", 
+    logo: "",        
     acceptTerms: false,
   });
 
