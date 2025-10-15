@@ -12,7 +12,7 @@ import RegisterCompany from "./pages/RegisterCompany";
 import RegisterAdmin from "./pages/RegisterAdmin";
 import Homepage from "./pages/homepage";
 import RegisterSelection from "./pages/RegisterSelection";
-import UserProfile from "./pages/UserProfile";
+import Profile from "./pages/UserProfile";
 import Contact from "./pages/Contact";
 const App = () => {
   return (
@@ -23,6 +23,7 @@ const App = () => {
         <Route path="/company/profile" element={<CompanyDashboard />} /> // correct capitalization
         <Route path="/RegisterSelection" element={<RegisterSelection />} />
         <Route path="/register/user" element={<RegisterUser />} />
+         <Route path="/user/profile" element= {<Profile />} />
         <Route path="/register/company" element={<RegisterCompany />} />
         <Route path="/register/admin" element={<RegisterAdmin />} />
         <Route path="/services" element={<ServiceCategories />} />

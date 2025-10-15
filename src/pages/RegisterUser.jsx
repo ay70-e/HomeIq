@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -22,15 +23,23 @@ const RegisterUser = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:3000/api/auth/register/user", formData);
-      alert(res.data.message);
-    } catch (err) {
-      alert(err.response?.data?.message || "Registration failed");
-    }
-  };
+ 
+  const navigate = useNavigate();
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await axios.post("http://localhost:3000/api/auth/register/user", formData);
+    alert(res.data.message);
+
+    localStorage.setItem("user", JSON.stringify(formData));
+
+    navigate("/user/profile");
+  } catch (err) {
+    alert(err.response?.data?.message || "Registration failed");
+  }
+};
+
 
   const containerStyle = {
     display: "flex",

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import OrdersTable from "../components/OrdersTable";
+import { useNavigate } from "react-router-dom";
+import UpgradeToPro from "../components/UpgradeToPro";
 
 const PALETTE = {
   icyBlue: "#EBF5FF",
@@ -18,18 +21,85 @@ const PALETTE = {
 
 // ---------- MAIN PAGE COMPONENT ----------
 export default function UserProfilePage() {
+  const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(false);
   const [activeTab, setActiveTab] = useState("profile");
   const [showEditModal, setShowEditModal] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showPremiumCard, setShowPremiumCard] = useState(false);
+  
 
   const [user, setUser] = useState({
-    name: "Amir Al-Haddad",
+    full_name: "Amir Al-Haddad",
+    phone_no: "+964 770 123 4567",
     email: "amir@example.com",
-    phone: "+964 770 123 4567",
-    city: "Baghdad",
+    province: "Baghdad",
   });
+  const [loading, setLoading] = useState(true);
+   useEffect(() => {
+      AOS.init({ duration: 2000 });
+    }, []);
+ useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.get("http://localhost:3000/api/user/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      // If API returns a valid user, set it; otherwise keep default
+      console.log("API response:", res.data);
+      if (res.data && res.data.user) {
+        setUser(res.data.user);
+      } else {
+        console.warn("⚠️ No company data found, using default user");
+      }
+    } catch (err) {
+      console.warn("⚠️ API failed, using default user:", err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchUser();
+}, []);
+
+  const Loader = () => {
+  return (
+    <div style={loaderContainer}>
+      <div style={spinner}></div>
+      <p style={loaderText}>Loading company data...</p>
+    </div>
+  );
+};
+
+// Styles
+const loaderContainer = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  minHeight: "80vh",
+  gap: "20px",
+};
+const [showUpgrade, setShowUpgrade] = useState(false);
+
+const spinner = {
+  width: "60px",
+  height: "60px",
+  border: "8px solid #f3f3f3",
+  borderTop: "8px solid #3bb273", // your theme color
+  borderRadius: "50%",
+  animation: "spin 1s linear infinite",
+};
+
+const loaderText = {
+  fontSize: "18px",
+  fontWeight: "500",
+  color: "#555",
+};
 
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
 
@@ -65,9 +135,7 @@ export default function UserProfilePage() {
     alert("Account upgraded to Premium!");
   }
 
-  function handleLogout() {
-    alert("Coming soon!");
-  }
+ 
 
   return (
     <div
@@ -100,7 +168,7 @@ export default function UserProfilePage() {
         {/* profile small */}
         <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 8 }}>
           <img
-            src="/assets/userPhoto.jpg"
+            src="/assets/userPhoto.gif"
             alt="user"
             style={{
               width: 56,
@@ -111,7 +179,7 @@ export default function UserProfilePage() {
             }}
           />
           <div>
-            <div style={{ fontWeight: 700 }}>{user.name}</div>
+            <div style={{ fontWeight: 700 }}>{user.full_name}</div>
             <div style={{ fontSize: 12, color: "#cbd5e1" }}>Online</div>
           </div>
         </div>
@@ -158,7 +226,13 @@ export default function UserProfilePage() {
             icon="🆘"
             onClick={() => setActiveTab("support")}
           />
-          <SidebarItem active={false} label="Logout" icon="🚪" onClick={handleLogout} />
+          
+          <SidebarItem
+            active={false}
+            label="Logout"
+            icon="🚪"
+            onClick={() => setShowUpgrade(true)}
+          />
         </nav>
 
         <div style={{ flex: 1 }} />
@@ -205,8 +279,7 @@ export default function UserProfilePage() {
               <ActivityFeed darkMode={darkMode} />
 
               {/* Quick Actions */}
-              <QuickActions darkMode={darkMode} />
-            </div>
+           <QuickActions darkMode={darkMode} navigate={navigate} />            </div>
           )}
 
           {/* Favorites */}
@@ -360,7 +433,7 @@ function ProfileCard({ user, mainCardBg, mainText, darkMode, onEdit, onChangePas
       }}
     >
       <img
-        src="/assets/userPhoto.jpg"
+        src="/assets/userPhoto.gif"
         alt="user-large"
         style={{
           width: 86,
@@ -373,7 +446,7 @@ function ProfileCard({ user, mainCardBg, mainText, darkMode, onEdit, onChangePas
       <div style={{ flex: 1 }}>
         <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
           <div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: mainText }}>{user.name}</div>
+            <div style={{ fontSize: 20, fontWeight: 800, color: mainText }}>{user.full_name}</div>
             <div style={{ color: darkMode ? "#d1d5db" : "#64748b", marginTop: 6 }}>
               {user.email}
             </div>
@@ -410,11 +483,11 @@ function ProfileCard({ user, mainCardBg, mainText, darkMode, onEdit, onChangePas
         <div style={{ marginTop: 12, display: "flex", gap: 18 }}>
           <div>
             <div style={{ fontSize: 13, color: mainText, fontWeight: 700 }}>Phone</div>
-            <div style={{ color: darkMode ? "#d1d5db" : "#555" }}>{user.phone}</div>
+            <div style={{ color: darkMode ? "#d1d5db" : "#555" }}>{user.phone_no}</div>
           </div>
           <div>
             <div style={{ fontSize: 13, color: mainText, fontWeight: 700 }}>City</div>
-            <div style={{ color: darkMode ? "#d1d5db" : "#555" }}>{user.city}</div>
+            <div style={{ color: darkMode ? "#d1d5db" : "#555" }}>{user.province}</div>
           </div>
         </div>
       </div>
@@ -450,8 +523,8 @@ function EditModal({ user, onChange, onSave, onCancel, darkMode }) {
       <h3 style={{ marginBottom: 12 }}>Edit Profile</h3>
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         <input
-          name="name"
-          value={user.name}
+          name="full_name"
+          value={user.full_name}
           onChange={onChange}
           placeholder="Name"
           style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
@@ -464,15 +537,15 @@ function EditModal({ user, onChange, onSave, onCancel, darkMode }) {
           style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
         />
         <input
-          name="phone"
-          value={user.phone}
+          name="phone_no"
+          value={user.phone_no}
           onChange={onChange}
           placeholder="Phone"
           style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
         />
         <input
-          name="city"
-          value={user.city}
+          name="province"
+          value={user.province}
           onChange={onChange}
           placeholder="City"
           style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
@@ -641,11 +714,12 @@ function ActivityFeed({ darkMode }) {
 }
 
 // ---------- QuickActions ----------
-function QuickActions({ darkMode }) {
+function QuickActions({ darkMode, navigate }) {
   const bg = darkMode ? PALETTE.strongViolet : PALETTE.brightBlue;
   return (
     <div style={{ marginTop: 6, display: "flex", gap: 12 }}>
       <button
+        onClick={() => navigate("/services")}
         style={{
           flex: 1,
           padding: "12px 16px",
