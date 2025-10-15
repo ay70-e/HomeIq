@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useParams, useNavigate } from 'react-router-dom';
 import ServiceCard from '../components/ServiceCard';
 import SearchBar from '../components/SearchBar';
@@ -32,17 +34,21 @@ const ServicesList = () => {
   };
 
   return (
-    <div className="services-list-page">
+    <div data-aos="fade-up"
+     className="services-list-page">
       <h1 className="services-title">Services in {category}</h1>
       <SearchBar value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
 
       {loading ? (
-        <div className="loading-spinner"></div>
+        <div 
+          className="loading-spinner"></div>
       ) : filteredServices.length === 0 ? (
         <p className="services-empty">No services found</p>
       ) : (
         <>
-        <div className="services-grid">
+        <div data-aos="fade-up"
+          
+        className="services-grid">
           {filteredServices.map(service => (
             <ServiceCard key={service.id} service={service} onClick={handleOpenDetails} />
           ))}

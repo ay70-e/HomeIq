@@ -25,5 +25,4 @@ const ServiceCard = ({ service }) => {
     </div>
   );
 };
-
 export default ServiceCard;

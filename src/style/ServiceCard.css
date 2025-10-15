@@ -57,12 +57,10 @@
   font-size: 16px;
   margin-top: auto;
 }
-
 .service-price {
   color: #4CAF50;
   font-weight: bold;
 }
-
 .service-status.available {
   color: #4CAF50;
 }

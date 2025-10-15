@@ -4,14 +4,23 @@ import '../style/AdminSidebar.css';
 export default function AdminSidebar() {
   return (
     <aside className="admin-sidebar">
-      <div className="logo">Dashboard</div>
+      <div className="logo">Admin<span> profile</span></div>
       <nav className="nav-links">
-        <a href="/admin/dashboard" className="nav-item active">Dashboard</a>
-        <a href="/admin/orders" className="nav-item">Orders</a>
-        <a href="/admin/users" className="nav-item">Users</a>
-        <a href="/admin/companies" className="nav-item">Companies</a>
-        <a href="/admin/services" className="nav-item">Services</a>
-        <a href="/admin/payments" className="nav-item">Payments</a>
+        <a href="/admin/profile" className="nav-item active">👩‍💻</a>
+        <a href="/orders" className="nav-item"> 📦  </a>
+        <a href="/admin/users" className="nav-item">👥</a>
+        <a href="/admin/companies" className="nav-item">🏢</a>
+        <a href="/admin/messages" className="nav-item">📩 </a>
+        <a href="/admin/homepage" className="nav-item"><img
+  src="/assets/logo.png"
+  alt="HomeIQ Logo"
+  style={{
+    height: "40px",
+    width: "24",
+    objectFit: "contain",
+    cursor: "pointer",
+  }}
+/> </a>
       </nav>
     </aside>
   );

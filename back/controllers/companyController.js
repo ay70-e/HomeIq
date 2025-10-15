@@ -1,4 +1,4 @@
-const Company = require('./models/Company');
+const Company = require('../models/Company');
 
 exports.getProfile = async (req, res) => {
   try {

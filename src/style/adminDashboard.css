@@ -1,35 +1,82 @@
-.admin-topbar {
-  height: 60px;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #ddd;
+.admin-layout {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1.5rem;
-  margin-left: 220px; 
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 220px;
-  z-index: 1000;
 }
 
-.admin-info .admin-name {
-  font-weight: bold;
-  font-size: 1rem;
-  color: #333;
+.main-content {
+  margin-left: 80px; 
+  padding: 20px;
 }
 
-.topbar-actions .logout-btn {
-  background-color: #d0021b;
+
+.stats-section {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background-color: #2f2f3f;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.filter-card {
+  width: 140px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 0.6rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.filter-card h4 {
+  font-size: 0.8rem;
+  margin-bottom: 0.2rem;
+}
+
+.filter-card label {
+  font-size: 0.7rem;
+}
+
+.filter-card input[type="date"] {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.4rem;
+  height: 24px;
+}
+
+.filter-card button {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.6rem;
+  background-color: #2f2f3f;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.logout-btn:hover {
-  background-color: #a50014;
+
+.stats-cards {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.stat-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 0.8rem;
+  width: 160px;
+  height: 120px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.stat-card h4 {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: #555;
+}
+
+.stat-card p {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
 }

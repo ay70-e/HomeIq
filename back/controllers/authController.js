@@ -11,7 +11,8 @@ exports.registerUser = async (req, res) => {
     const { full_name, phone_no, email, password, province, role } = req.body;
 
     const existingUser = await User.findOne({ where: { phone_no } });
-    if (existingUser) return res.status(400).json({ message: 'Phone number is already in use' });
+    if (existingUser)
+      return res.status(400).json({ message: 'Phone number is already in use' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -21,7 +22,7 @@ exports.registerUser = async (req, res) => {
       email,
       password: hashedPassword,
       province,
-      role
+      role,
     });
 
     res.status(201).json({ message: 'User account created successfully', user });
@@ -33,10 +34,21 @@ exports.registerUser = async (req, res) => {
 // Register new company
 exports.registerCompany = async (req, res) => {
   try {
-    const { name, email, phone_no, password, category, address, role, license_doc, logo } = req.body;
+    const {
+      name,
+      email,
+      phone_no,
+      password,
+      category,
+      address,
+      role,
+      license_doc,
+      logo,
+    } = req.body;
 
     const existingCompany = await Company.findOne({ where: { phone_no } });
-    if (existingCompany) return res.status(400).json({ message: 'Phone number is already in use' });
+    if (existingCompany)
+      return res.status(400).json({ message: 'Phone number is already in use' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -49,10 +61,21 @@ exports.registerCompany = async (req, res) => {
       address,
       role,
       license_doc,
-      logo
+      logo,
     });
 
-    res.status(201).json({ message: 'Company registered successfully', company });
+    // ✅ Generate token for newly registered company
+    const token = jwt.sign(
+      { id: company.company_id, role: company.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '7d' }
+    );
+
+    res.status(201).json({
+      message: 'Company registered successfully',
+      token,
+      role: company.role,
+    });
   } catch (error) {
     res.status(500).json({ message: 'Company registration failed', error: error.message });
   }
@@ -64,7 +87,8 @@ exports.registerAdmin = async (req, res) => {
     const { full_name, email, phone_no, password } = req.body;
 
     const existingAdmin = await Admin.findOne({ where: { phone_no } });
-    if (existingAdmin) return res.status(400).json({ message: 'Phone number is already in use' });
+    if (existingAdmin)
+      return res.status(400).json({ message: 'Phone number is already in use' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -73,7 +97,7 @@ exports.registerAdmin = async (req, res) => {
       email,
       phone_no,
       password: hashedPassword,
-      role: 'admin'
+      role: 'admin',
     });
 
     res.status(201).json({ message: 'Admin account created successfully', admin });
@@ -98,30 +122,30 @@ exports.login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, account.password);
     if (!isMatch) return res.status(401).json({ message: 'Incorrect password' });
 
-  
     let id;
-switch(account.role) {
-  case 'user':
-    id = account.user_id;
-    break;
-  case 'company':
-    id = account.company_id;
-    break;
-  case 'admin':
-    id = account.admin_id;
-    break;
-}
+    switch (account.role) {
+      case 'user':
+        id = account.user_id;
+        break;
+      case 'company':
+        id = account.company_id;
+        break;
+      case 'admin':
+        id = account.admin_id;
+        break;
+    }
 
-const token = jwt.sign(
-  { id, role: account.role },
-  process.env.JWT_SECRET,
-  { expiresIn: '7d' }
-);
+    const token = jwt.sign(
+      { id, role: account.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '7d' }
+    );
 
-
-
-
-    res.status(200).json({ message: 'Login successful', token });
+    res.status(200).json({
+      message: 'Login successful',
+      token,
+      role: account.role,
+    });
   } catch (error) {
     res.status(500).json({ message: 'Login failed', error: error.message });
   }

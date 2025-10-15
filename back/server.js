@@ -4,13 +4,20 @@ const dotenv = require('dotenv');
 const cors = require('cors');  
 const sequelize = require('./config/db');
 
+// Routes
+
+const companyRoutes = require('./routes/companyRoutes');
 const authMiddleware = require('./middleware/authMiddleware');
+
+
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const offerRoutes = require('./routes/offerRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
 
+
+// Middleware
 dotenv.config();
 app.use(express.json());
 
@@ -19,7 +26,11 @@ app.use(cors({
   credentials: true,            
 }));
 
+// Route bindings
+
 app.use('/api/auth', authRoutes);
+app.use('/api/company', companyRoutes);                  
+
 app.use('/api/order', orderRoutes);
 app.use('/api/offer', offerRoutes);
 app.use('/api/review', reviewRoutes);

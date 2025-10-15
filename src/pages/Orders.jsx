@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../style/Orders.css';
 import ordersData from '../data/ordersData';
 import RatingModal from '../components/RatingModal';
+import AdminSidebar from '../components/AdminSidebar';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
@@ -26,10 +27,11 @@ function Orders() {
 
   return (
     <div className="orders-page">
+      <AdminSidebar/>
       <h2>My Orders</h2>
 
       <div className="filter-tabs">
-        {['all', 'in_review', 'pending', 'completed', 'cancelled','in_progress'].map(status => (
+        {['all', 'pending', 'completed', 'cancelled','in_progress'].map(status => (
           <button
             key={status}
             className={`filter-button ${filterStatus === status ? 'active' : ''}`}
@@ -43,20 +45,19 @@ function Orders() {
       <table className="orders-table">
         <thead>
           <tr>
-            <th>#</th>
+            <th></th>
             <th>Service</th>
             <th>Details</th>
             <th>Date</th>
             <th>Price</th>
             <th>Status</th>
             <th>Payment</th>
-            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {filteredOrders.length === 0 ? (
             <tr>
-              <td colSpan="8">No orders found for this status.</td>
+              <td colSpan="7">No orders found for this status.</td>
             </tr>
           ) : (
             filteredOrders.map(order => (
@@ -68,15 +69,6 @@ function Orders() {
                 <td>{order.price} IQD</td>
                 <td className={`status-cell ${order.order_status}`}>{order.order_status}</td>
                 <td>{order.payment_method}</td>
-                <td>
-                  {order.order_status === 'completed' && !order.reviewed ? (
-                    <button className="rate-button" onClick={() => handleRateClick(order)}>
-                      Rate
-                    </button>
-                  ) : (
-                    <span>—</span>
-                  )}
-                </td>
               </tr>
             ))
           )}

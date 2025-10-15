@@ -16,7 +16,7 @@ const ordersData = [
     details: 'Exterior and interior glass cleaning',
     price: 12000,
     order_date: '2025-10-08',
-    order_status: 'in_review',
+    order_status: 'completed',
     payment_method: 'online',
     reviewed: false
   },
@@ -60,7 +60,7 @@ const ordersData = [
     details: 'Packing and moving office equipment',
     price: 55000,
     order_date: '2025-09-30',
-    order_status: 'in_review',
+    order_status: 'cancelled',
     payment_method: 'cash',
     reviewed: false
   },

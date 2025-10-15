@@ -1,7 +1,7 @@
 
 .services-list-page {
   padding: 30px;
-  background-color: #27293D;
+  background-color: #f3f8f6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -36,6 +36,7 @@
   font-size: 18px;
   color: #27293D;
   margin-bottom: 16px;
+
 }
 
 .services-empty {
