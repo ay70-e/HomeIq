@@ -77,7 +77,7 @@ export default function Navbar() {
   src="/assets/logo.PNG"
   alt="HomeIQ Logo"
   style={{
-    height: "60px",    // try 50–70px depending on navbar height
+    height: "60px",    
     width: "auto",
     objectFit: "contain",
     cursor: "pointer",
