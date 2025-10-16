@@ -3,6 +3,7 @@
   font-family: 'Segoe UI', sans-serif;
   background-color: #f5f7fa;
   min-height: 100vh;
+  margin-left: 110px;
 }
 
 .orders-page h2 {
@@ -30,9 +31,11 @@
 }
 
 .filter-button:hover {
+
+  background-color: #eaeaea;
   background-color: rgb(235, 245, 255);
  color:  rgb(93, 173, 236);
-  font-weight: 600;
+  font-weight: 400;
   box-shadow: 0 0 6px 1px rgba(93, 173, 236, 0.7);
 }
 
@@ -46,8 +49,8 @@
 }
 .orders-table {
   width: 100%;
-  border-collapse: separate; /* 👈 غيّرها من collapse إلى separate */
-  border-spacing: 0; /* يمنع الفراغ بين الخلايا */
+  border-collapse: separate; 
+  border-spacing: 0;
   background-color: white;
   border-radius: 8px;
   color: #2f3a78;
@@ -77,7 +80,7 @@
 }
 
 .orders-table tr{
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   border-bottom: 1px solid #eee;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -111,6 +114,7 @@
 
 .status-cell {
   text-transform: capitalize;
+  font-weight: 600;
 }
 
 .status-cell.pending {

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import '../style/Orders.css';
 import ordersData from '../data/ordersData';
 import RatingModal from '../components/RatingModal';
+import AdminSidebar from "../components/AdminSidebar";
 
 
-function Orders() {
+
+function Orders1() {
   const [orders, setOrders] = useState([]);
   const [filterStatus, setFilterStatus] = useState('all');
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -27,7 +29,7 @@ function Orders() {
 
   return (
     <div className="orders-page">
-     
+     <AdminSidebar/>
       <h2>My Orders</h2>
 
       <div className="filter-tabs">
@@ -82,4 +84,4 @@ function Orders() {
   );
 }
 
-export default Orders;
+export default Orders1;

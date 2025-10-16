@@ -110,7 +110,7 @@ const spinner = {
   width: "60px",
   height: "60px",
   border: "8px solid #f3f3f3",
-  borderTop: "8px solid #3bb273", // your theme color
+  borderTop: "8px solid #3bb273", 
   borderRadius: "50%",
   animation: "spin 1s linear infinite",
 };
@@ -610,7 +610,7 @@ const fakeAbout = {
 <p style={{ color: "#5DADEC", marginBottom: "24px" }}>
   Connect directly with the admin for quick help or service updates.
 </p>
-          <div style={{ display: "flex", gap: "2rem", }}>
+         <div style={{ display: "flex", gap: "2rem", }}>
             <ChatBox role="company" />
              <img  data-aos="fade-left"
           data-aos-offset="300"

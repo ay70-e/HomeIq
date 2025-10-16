@@ -1,18 +1,47 @@
 import React, { useState } from "react";
 
-const ChatBox = ({ role }) => {
-  const [messages, setMessages] = useState([
-    { sender: "admin", text: "Welcome! How can I assist you today?" },
-    { sender: "company", text: "We need to discuss a new service request." },
-  ]);
+const ChatBox = ({ role ,companyName, email }) => {
 
   const [newMessage, setNewMessage] = useState("");
+const [messages, setMessages] = useState(() => {
+  // localStorage
+  const stored = JSON.parse(localStorage.getItem("companyMessages") || "[]");
 
-  const handleSend = () => {
-    if (!newMessage.trim()) return;
-    setMessages([...messages, { sender: role, text: newMessage }]);
-    setNewMessage("");
+  
+  if (stored.length === 0) {
+    return [
+      {
+        sender: role === "admin" ? "company" : "admin",
+        companyName,
+        email,
+        text: "Hello! This is a default message to get started.",
+        date: new Date().toISOString(),
+      },
+    ];
+  }
+
+  return stored.filter(msg => msg.sender === role || msg.companyName === companyName);
+});
+
+const handleSend = () => {
+  if (!newMessage.trim()) return;
+
+  const messageObj = {
+    sender: role,
+    companyName: role === "admin" ? companyName : "Admin",
+   companyName ,
+   email,
+    text: newMessage,
+    date: new Date().toISOString(),
   };
+
+  const stored = JSON.parse(localStorage.getItem("companyMessages") || "[]");
+  stored.push(messageObj);
+  localStorage.setItem("companyMessages", JSON.stringify(stored));
+
+  setMessages([...messages, messageObj]);
+  setNewMessage("");
+};
 
   return (
     <div

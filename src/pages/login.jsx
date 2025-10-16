@@ -34,7 +34,7 @@ const handleSubmit = async (e) => {
     if (role === "company") {
       navigate("/company/profile");
     } else if (role === "admin") {
-      navigate("/admin");
+      navigate("/admin/profile");
     } else if (role === "user") {
       navigate("/user/profile");
     } else {

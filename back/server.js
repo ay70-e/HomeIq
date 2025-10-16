@@ -8,8 +8,7 @@ const sequelize = require('./config/db');
 
 const companyRoutes = require('./routes/companyRoutes');
 const authMiddleware = require('./middleware/authMiddleware');
-
-
+const adminRoutes = require('./routes/adminRoutes');
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const offerRoutes = require('./routes/offerRoutes');
@@ -31,8 +30,8 @@ app.use(cors({
 // Route bindings
 
 app.use('/api/auth', authRoutes);
-app.use('/api/company', companyRoutes);                  
-
+app.use('/api/company', companyRoutes); 
+app.use('/api/auth', adminRoutes);                 
 app.use('/api/order', orderRoutes);
 app.use('/api/offer', offerRoutes);
 app.use('/api/review', reviewRoutes);

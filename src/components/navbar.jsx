@@ -74,7 +74,7 @@ export default function Navbar() {
           onClick={() => handleLinkClick("Home")}
         >
      <img
-  src="/assets/logo.PNG"
+  src="/assets/logo.png"
   alt="HomeIQ Logo"
   style={{
     height: "60px",    
