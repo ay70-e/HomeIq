@@ -50,8 +50,8 @@ const usersData = [
   },
   {
     id: 8,
-    name: 'Hussein Zain Alabideen',
-    email: 'hussein@example.com',
+    name: 'Amir Al-Haddad',
+    email: 'amir@example.com',
     joined: '2025-09-10',
     avatar: '/assets/user_166246.png',
   },

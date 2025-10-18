@@ -17,7 +17,7 @@ export default function AdminDashboard() {
       gap:"7rem"
     },
     sidebar: {
-      width: '200px',
+      width: '20px',
 
      
     },

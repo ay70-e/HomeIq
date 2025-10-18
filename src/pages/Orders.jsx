@@ -17,9 +17,7 @@ function Orders() {
     ? orders
     : orders.filter(order => order.order_status === filterStatus);
 
-  const handleRateClick = (order) => {
-    setSelectedOrder(order);
-  };
+  
 
   const closeModal = () => {
     setSelectedOrder(null);

@@ -1,4 +1,11 @@
-.orders-page {
+.orders-page ,.orders1-page{
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  margin-left: 11px;
+}
+.orders1-page {
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
   background-color: #f5f7fa;
@@ -6,7 +13,7 @@
   margin-left: 110px;
 }
 
-.orders-page h2 {
+.orders-page h2 ,.orders1-page h2{
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   color: #333;

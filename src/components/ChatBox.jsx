@@ -5,6 +5,7 @@ const ChatBox = ({ role ,companyName, email }) => {
   const [newMessage, setNewMessage] = useState("");
 const [messages, setMessages] = useState(() => {
   // localStorage
+
   const stored = JSON.parse(localStorage.getItem("companyMessages") || "[]");
 
   
@@ -29,7 +30,6 @@ const handleSend = () => {
   const messageObj = {
     sender: role,
     companyName: role === "admin" ? companyName : "Admin",
-   companyName ,
    email,
     text: newMessage,
     date: new Date().toISOString(),

@@ -19,16 +19,14 @@ function Orders1() {
     ? orders
     : orders.filter(order => order.order_status === filterStatus);
 
-  const handleRateClick = (order) => {
-    setSelectedOrder(order);
-  };
+  
 
   const closeModal = () => {
     setSelectedOrder(null);
   };
 
   return (
-    <div className="orders-page">
+    <div className="orders1-page">
      <AdminSidebar/>
       <h2>My Orders</h2>
 
